@@ -1,0 +1,437 @@
+/* Credits
+For creating a cat in css: The CSS Cat https://codepen.io/vcmg/pen/OVYpWN?editors=0110
+For animating the blinking: https://codepen.io/trueskawka/pen/zPYXLM
+For getting the animations controlled by Javascript to restart https://css-tricks.com/restart-css-animation/  */
+
+:root{
+    --main-color:#39332d;
+    --main-cat-color:#E9CBA7;
+    --main-box-shadow:  rgba(85, 77, 68, 0.2) 0px 
+    2px 8px 0px;
+}
+
+html, body {
+    margin: 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+body,
+.container,
+#border-div{
+    display: flex;
+    justify-content: center;   
+}
+
+body {
+    /* background-color: orange; */
+    height: 100vh;
+    align-items:center;
+    padding-top:1em;
+    font-family: 'Fira Sans', sans-serif;
+    color: var(--main-color);
+}
+
+.container {
+    flex-direction:column;
+    background: white;
+    border-radius: 10px;
+    box-shadow:var(--main-box-shadow);
+}
+
+#pumpkin-div{
+ display:block;
+ position:relative;
+}
+
+ #cat-body {
+  position: absolute;
+  transform: rotate(-15deg) translateX(-50px) translateY(-70%);
+  height: 116px;
+  width: 120px;
+  background:var(--main-cat-color);
+  border-radius: 22px;
+  display: inline-block;
+  overflow: hide;
+  z-index: 1;
+  border-radius:45%;
+  box-shadow:var(--main-box-shadow);
+}
+
+.ear {
+  position: relative;
+  margin-top: -20px;
+  height: 45px;
+  width: 50px;
+  background-color: var(--main-cat-color);
+  display: inline-block;
+  z-index: 2;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+  
+#ear-left {
+  clip-path: polygon(0 0, 0% 100%, 100% 60%);
+  margin-left:4px;
+}
+
+#ear-right {
+  margin-left: 6px;
+  clip-path: polygon(100% 0, 0% 60%, 100% 100%);
+}
+
+.ear-inner {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  background-color: #D3B897;
+  z-index: 3;
+}
+
+#ear-inner-left {
+position:absolute;
+clip-path: polygon(0 40%, 100% 100%, 0 100%);
+  left:4px;
+  width:40px
+}
+
+#ear-inner-right {
+position:absolute;
+  clip-path: polygon(100% 0%, 100% 100%, 0 50%);
+  left:15px;
+  top:10px;
+}
+
+#mask {
+  position: relative;
+  background-color: var(--main-cat-color);
+  margin-top: -29px;
+  height: 50px;
+  width: 110px;
+  border-radius: 50%;
+  z-index: 4;
+  left:4px;
+}
+ #patch {
+  position: relative;
+  margin-top: -50px;
+  z-index: 5;
+}
+
+.fur {
+  width: 5px;
+  background-color: #C0A98B;
+  display: inline-block;
+}
+
+.fur:first-of-type {
+  margin-left: 40%;
+  height: 15px;
+  float: left;
+}
+
+.fur:nth-of-type(2) {
+  margin-left: 4px;
+  height: 5px;
+  float: left;
+}
+
+.fur:nth-of-type(3) {
+  margin-left: 4px;
+  height: 10px;
+  float: left;
+}
+
+#eyes {
+  position: relative;
+  margin-top: 30%;
+  z-index: 5;
+}
+
+.eye {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: inline-block;
+  position:relative;
+}
+
+.eye::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  border-radius: 50%;
+  background: #C0A98B;
+  animation: blink 4s infinite ease-in;
+}
+
+@keyframes blink {
+    0% {
+      height: 0;
+    }
+    87.5% {
+      height: 0;
+    }
+    92.5% {
+      height: 100%;
+    }
+    95% {
+      height: 100%;
+    }
+    100% {
+      height: 0;
+    }
+  }
+  
+  .open-mouth {
+    height: 12px;
+    width: 12px;
+    top:-4px;
+    left:16px;
+    background-color: #E9CBA7;
+    border-radius: 50%;
+    display: inline-block;
+    position:relative;
+  }
+  .open-mouth::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: -18;
+    height: 12px;
+    width: 18px;
+    background-color: #554D44;
+    border-radius: 50%;
+    animation: blink 4s infinite ease-in;
+  }
+#eye-left {
+  margin-left: 27%;
+}
+
+#eye-right {
+  margin-left: 10%;
+}
+
+.shine {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background-color: #554D44;
+  margin-top: 2px;
+  margin-left: 1px;
+  animation: look-around 4s infinite;
+}
+
+@keyframes look-around {
+
+  0% {
+    transform: translateX(0);
+  }
+  55% {
+    transform: translate(90%, 20%);
+  }
+  75% {
+    transform: translateX(0);
+  }
+}
+
+#whisk-left {
+  display: inline-block;
+    position:relative;
+}
+
+.whisker {
+  height: 3px;
+  width: 25px;
+  background-color: #D3B897;
+  margin-bottom: 6px;
+}
+
+#whisk-one {
+  transform: rotate(15deg);  
+}
+
+#whisk-three {
+  transform: rotate(-15deg);
+}
+
+#nose {
+  position: absolute;
+  margin-left: 15%;
+  margin-top:-3%;
+  height: 30px;
+  width: 18px;
+  background-color: var(--main-color);
+  clip-path: ellipse(40% 22% at 50% 50%);
+  display: inline-block;
+  z-index: 10;
+}
+
+#whisk-right {
+  display: inline-block;
+  position:relative;
+  left:65px;
+}
+
+#whisk-four {
+  transform: rotate(-15deg);
+}
+
+#whisk-six {
+  transform: rotate(15deg);
+}
+
+#smile {
+  position: relative;
+  margin-left: 29%;
+  margin-top: -22%;
+  z-index: 5;
+}
+
+#smile-left-align {
+  display: inline-block;
+  position: absolute;
+}
+
+#smile-left {
+  height: 10px;
+  width: 20px;
+  border-radius: 0 0 10px 10px;
+  background-color: #E9CBA7;
+  border: 2px solid var(--main-color);
+}
+
+#mask-left {
+  margin-top: -62%;
+  height: 4px;
+  width: 20px;
+  background-color: var(--main-cat-color);
+}
+
+#smile-right-align {
+  display: inline-block;
+  margin-left: 22px;
+  position: absolute;
+}
+
+#smile-right {
+  height: 10px;
+  width: 20px;
+  border-radius: 0 0 11px 10px;
+  background-color: var(--main-cat-color);
+  border: 2px solid var(--main-color);
+}
+
+#mask-right {
+  margin-top: -62%;
+  height: 4px;
+  width: 24px;
+  background-color: var(--main-cat-color);
+}
+
+.inner-container{
+    display:flex;
+     flex-direction: column;
+}
+
+#inner-top{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:2em;
+  }
+  
+  #inner-middle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-width:300px;  
+    min-height:220px;
+  }
+  
+  #inner-bottom{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-bottom:1em;
+  }
+    
+label{
+      font-size:1.4em;
+      padding-bottom:0.5em;
+      color:var(--main-color);
+      letter-spacing:0.01em;
+}
+
+input{
+    font-size:1.6em;
+    text-align:center;
+}
+
+/* input:focus{
+    border:1px red solid;
+} */
+
+#bname{
+    color:var(--main-color);
+}
+#name {
+    font-size: 50px;
+    text-shadow: 1px 1px var(--main-color);   
+    color:#3677FF;
+}
+
+.pop-name{
+    animation: nameStretch 0.3s linear 0s 2 alternate;
+    animation-fill-mode: both;
+}
+
+@keyframes nameStretch{
+    0% {letter-spacing:inherit;font-size:3em;}
+    100% {letter-spacing:1px; font-size:4em;}
+}
+
+.trans{
+    transition:all 0.3s ease-in;
+}
+
+.untrans{
+    color:3677FF;
+    transition:all 0.3s ease-in;
+}
+
+
+button {
+    padding: 1em 1.4em;
+    border: solid 8px #ffd26f;
+    background:#fff;
+    color:var(--main-color);
+    font-size:1.4rem;
+    letter-spacing:0.05em;
+    box-shadow: var(--main-box-shadow);
+    border-radius: 20px;
+    text-shadow: 1px 1px #f3f3f3;
+    width:200px;
+}
+
+button:hover,
+button:focus {
+    cursor: pointer;
+    background:#f3f3f3;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+#border-div{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+    box-shadow: var(--main-box-shadow);
+    border-radius: 10px;
+    padding: 1em;
+   background: no-repeat fixed center linear-gradient(65deg, #3677FF,#FFd26F);
+}
